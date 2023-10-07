@@ -16,7 +16,7 @@ import svgLoader from 'vite-svg-loader';
 export default defineConfig({
   server: {
     host: true, // 可以以IP访问
-    port: 8080, // 端口
+    port: 3000, // 端口
     open: true, // 自动打开游览器
     cors: true, // 允许跨域
     proxy: {
