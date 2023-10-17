@@ -7,11 +7,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('@/views/home/index.vue'),
+      name: 'root',
+      component: () => import('@/components/layout/GlobalLayout.vue'),
+      redirect: 'home',
       meta: {
         // router other information
       },
+      children: [
+        {
+          path: '/home',
+          name: 'home',
+          component: () => import('@/views/home/index.vue'),
+          meta: {},
+          children: [],
+        },
+      ],
     },
     ...appRoutes,
     {

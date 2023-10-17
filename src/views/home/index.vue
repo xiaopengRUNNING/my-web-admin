@@ -1,5 +1,11 @@
 <script setup lang="ts"></script>
 
-<template>home</template>
+<template>
+  <div class="test">home</div>
+</template>
 
-<style scoped></style>
+<style scoped lang="less">
+.test {
+  background-color: var(--color-bg-2);
+}
+</style>

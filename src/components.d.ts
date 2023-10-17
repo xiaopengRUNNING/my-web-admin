@@ -9,12 +9,23 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AAvatar: typeof import('@arco-design/web-vue')['Avatar']
     AButton: typeof import('@arco-design/web-vue')['Button']
     AConfigProvider: typeof import('@arco-design/web-vue')['ConfigProvider']
-    ADivider: typeof import('@arco-design/web-vue')['Divider']
-    ALink: typeof import('@arco-design/web-vue')['Link']
-    AResult: typeof import('@arco-design/web-vue')['Result']
+    ALayout: typeof import('@arco-design/web-vue')['Layout']
+    ALayoutContent: typeof import('@arco-design/web-vue')['LayoutContent']
+    ALayoutFooter: typeof import('@arco-design/web-vue')['LayoutFooter']
+    ALayoutHeader: typeof import('@arco-design/web-vue')['LayoutHeader']
+    ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider']
     ATooltip: typeof import('@arco-design/web-vue')['Tooltip']
+    GlobalFooter: typeof import('./components/layout/GlobalFooter.vue')['default']
+    GlobalHeader: typeof import('./components/layout/GlobalHeader.vue')['default']
+    GlobalLayout: typeof import('./components/layout/GlobalLayout.vue')['default']
+    IconFullscreen: typeof import('@arco-design/web-vue/es/icon')['IconFullscreen']
+    IconFullscreenExit: typeof import('@arco-design/web-vue/es/icon')['IconFullscreenExit']
+    IconMoonFill: typeof import('@arco-design/web-vue/es/icon')['IconMoonFill']
+    IconSunFill: typeof import('@arco-design/web-vue/es/icon')['IconSunFill']
+    IconUser: typeof import('@arco-design/web-vue/es/icon')['IconUser']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

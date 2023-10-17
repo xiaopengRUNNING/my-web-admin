@@ -67,7 +67,7 @@ export default defineConfig({
     Components({
       dts: './src/components.d.ts',
       resolvers: [
-        ArcoResolver({ sideEffect: true }),
+        ArcoResolver({ sideEffect: true, resolveIcons: true }),
         VueUseComponentsResolver(),
         IconsResolver(),
       ],
