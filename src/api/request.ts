@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.status === 200) {
+    if (response.status === 201) {
       return response.data;
     }
     return response;
@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-const service = {
+export default {
   get<T = any>(url: string, data?: object): Promise<T> {
     return axiosInstance.get(url, { params: data });
   },
@@ -59,5 +59,3 @@ const service = {
       headers: { 'Content-Type': 'multipart/form-data' },
     }),
 };
-
-export default service;

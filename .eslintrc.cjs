@@ -23,6 +23,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 0,
+    'import/prefer-default-export': 0,
     'vue/multi-word-component-names': [
       'error',
       {

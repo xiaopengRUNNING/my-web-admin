@@ -22,7 +22,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // 这里配置真实的后端环境地址
-        target: 'http://example',
+        target: 'http://localhost:3001',
         changeOrigin: true,
         rewrite: (path) => path.replace('/api/', '/'),
       },

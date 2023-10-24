@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import appRoutes from './modules-index';
+import constantsRouter from './constants-router';
 import createRouterGuard from './guard';
 
 const router = createRouter({
@@ -21,9 +22,10 @@ const router = createRouter({
           meta: {},
           children: [],
         },
+        ...appRoutes,
       ],
     },
-    ...appRoutes,
+    ...constantsRouter,
     {
       path: '/:pathMatch(.*)*',
       name: 'noFound',

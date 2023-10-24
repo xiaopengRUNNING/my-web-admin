@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     ALayoutFooter: typeof import('@arco-design/web-vue')['LayoutFooter']
     ALayoutHeader: typeof import('@arco-design/web-vue')['LayoutHeader']
     ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider']
+    AResult: typeof import('@arco-design/web-vue')['Result']
     ATooltip: typeof import('@arco-design/web-vue')['Tooltip']
     GlobalFooter: typeof import('./components/layout/GlobalFooter.vue')['default']
     GlobalHeader: typeof import('./components/layout/GlobalHeader.vue')['default']

@@ -4,7 +4,7 @@ export default [
     name: '403',
     component: () => import('@/views/exception/403.vue'),
     meta: {
-      title: '404',
+      title: '403',
     },
   },
   {
@@ -21,6 +21,14 @@ export default [
     component: () => import('@/views/exception/500.vue'),
     meta: {
       title: '500',
+    },
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      title: '登录',
     },
   },
 ];
