@@ -17,7 +17,7 @@ const router = createRouter({
       children: [
         {
           path: '/home',
-          name: 'home',
+          name: 'Home',
           component: () => import('@/views/home/index.vue'),
           meta: {},
           children: [],
@@ -28,7 +28,7 @@ const router = createRouter({
     ...constantsRouter,
     {
       path: '/:pathMatch(.*)*',
-      name: 'noFound',
+      name: 'NotFound',
       component: () => import('@/views/exception/404.vue'),
       meta: {
         title: '404',

@@ -2,6 +2,7 @@ import type { Router } from 'vue-router';
 import Nprogress from 'nprogress';
 import { setRouteEmitter } from '@/utils/router-listener';
 import 'nprogress/nprogress.css';
+import setupPagePermissionGuard from './page-permissions';
 
 Nprogress.configure({ showSpinner: false });
 
@@ -23,4 +24,5 @@ function setupPageGuard(router: Router) {
 
 export default function createRouterGuard(router: Router) {
   setupPageGuard(router);
+  setupPagePermissionGuard(router);
 }
