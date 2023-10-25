@@ -4,7 +4,7 @@ import { login, LoginData } from '@/api/modules/system';
 import { UserState } from './types';
 import { setToken, clearToken } from '@/utils/token';
 
-const useUserStore = defineStore('user', {
+const useUserState = defineStore('user', {
   state: (): Partial<UserState> => ({}),
   getters: {
     userInfo: (state) => ({ ...state }),
@@ -19,18 +19,18 @@ const useUserStore = defineStore('user', {
     async userLogin(params: LoginData): Promise<any> {
       const { success, result, message } = await login(params);
       if (success) {
-        Message.success('欢迎回来！');
         const { token, userInfo } = result;
         this.setInfo(userInfo);
         setToken(token);
       } else {
         Message.error(message);
+        throw new Error(message);
       }
     },
-    userLogout(): void {
-      clearToken();
+    async userLogout(): Promise<any> {
+      await clearToken();
     },
   },
 });
 
-export default useUserStore;
+export default useUserState;

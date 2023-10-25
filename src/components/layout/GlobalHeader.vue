@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { useAppState } from '@/store';
+import { Message } from '@arco-design/web-vue';
+import { useAppState, useUserState } from '@/store';
 
 const appState = useAppState();
+const userState = useUserState();
+const router = useRouter();
 const theme = computed(() => {
   return appState.theme;
 });
@@ -18,6 +21,13 @@ const isDark = useDark({
 const toggleTheme = useToggle(isDark);
 
 const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
+
+const logout = () => {
+  userState.userLogout().then(() => {
+    router.push({ path: '/login' });
+    Message.success('登出成功！');
+  });
+};
 </script>
 
 <template>
@@ -60,9 +70,19 @@ const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
         </a-tooltip>
       </li>
       <li class="ml-4">
-        <a-avatar :style="{ backgroundColor: '#3370ff' }">
-          <IconUser />
-        </a-avatar>
+        <a-dropdown trigger="hover">
+          <a-avatar :style="{ backgroundColor: '#3370ff', cursor: 'pointer' }">
+            <IconUser />
+          </a-avatar>
+          <template #content>
+            <a-doption @click="logout">
+              <template #icon>
+                <icon-export />
+              </template>
+              <template #default>退出登录</template>
+            </a-doption>
+          </template>
+        </a-dropdown>
       </li>
     </ul>
   </div>

@@ -1,19 +1,38 @@
 <script setup lang="ts">
 import { Message } from '@arco-design/web-vue';
-import { useUserStore } from '@/store';
+// import { ref, watch } from 'vue';
+import { useUserState } from '@/store';
 
 const router = useRouter();
-const userStore = useUserStore();
+const userStore = useUserState();
 const signUp = ref(false);
 const loading = ref(false);
 const loginParam = ref({ username: '', password: '' });
+const errorInfo = ref({ username: false, password: false });
+
+watch(
+  loginParam,
+  (newValue) => {
+    if (errorInfo.value.username || errorInfo.value.password) {
+      errorInfo.value.username = !newValue.username;
+      errorInfo.value.password = !newValue.password;
+    }
+  },
+  { deep: true },
+);
 
 const onSignIn = () => {
+  if (!loginParam.value.username || !loginParam.value.password) {
+    errorInfo.value.username = !loginParam.value.username;
+    errorInfo.value.password = !loginParam.value.password;
+    return;
+  }
   loading.value = true;
   userStore
     .userLogin(loginParam.value)
     .then(() => {
       router.push('/home');
+      Message.success('欢迎回来！');
     })
     .finally(() => {
       loading.value = false;
@@ -46,8 +65,14 @@ const onSignUp = () => {
         <form>
           <h1>登 录</h1>
           <span>使用你的账号和密码</span>
-          <input type="text" placeholder="账号" v-model="loginParam.username" />
           <input
+            :class="{ error: errorInfo.username }"
+            type="text"
+            placeholder="账号"
+            v-model="loginParam.username"
+          />
+          <input
+            :class="{ error: errorInfo.password }"
             type="password"
             placeholder="密码"
             v-model="loginParam.password"
@@ -149,13 +174,17 @@ h1 {
   }
   input {
     background-color: #eee;
-    border: none;
+    border: 1px solid transparent;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
     width: 100%;
     outline: none;
+
+    &.error {
+      border: 1px solid #ff0000;
+    }
   }
   .form-container {
     position: absolute;

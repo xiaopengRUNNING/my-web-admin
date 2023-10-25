@@ -1,8 +1,8 @@
 import { createPinia } from 'pinia';
 import useAppState from './modules/app';
-import useUserStore from './modules/user';
+import useUserState from './modules/user';
 
 const pinia = createPinia();
 
-export { useAppState, useUserStore };
+export { useAppState, useUserState };
 export default pinia;

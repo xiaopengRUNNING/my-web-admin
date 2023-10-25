@@ -33,6 +33,6 @@ import GlobalFooter from './GlobalFooter.vue';
 }
 .global-content-wrapper {
   background-color: var(--color-fill-3);
-  padding: 16px 20px 0;
+  padding: 12px 12px 0;
 }
 </style>
