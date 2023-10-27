@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Message } from '@arco-design/web-vue';
-// import { ref, watch } from 'vue';
 import { useUserState } from '@/store';
 
 const router = useRouter();

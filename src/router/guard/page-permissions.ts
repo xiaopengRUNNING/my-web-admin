@@ -10,7 +10,7 @@ export default function setupPagePermissionGuard(router: Router) {
       }
       next();
     } else {
-      if (to.name === 'Login') {
+      if (!to.meta.auth) {
         next();
         return;
       }
