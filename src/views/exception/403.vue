@@ -6,9 +6,9 @@ const back = () => {
 </script>
 
 <template>
-  <div>
+  <div class="relative h-full">
     <a-result
-      class="absolute top-1/2 -translate-y-1/2 -mt-8"
+      class="absolute top-1/2 -translate-y-1/2 -mt-8 w-full"
       status="403"
       subtitle="对不起，您没有访问该资源的权限～"
     >

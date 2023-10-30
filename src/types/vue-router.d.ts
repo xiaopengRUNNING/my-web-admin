@@ -11,5 +11,6 @@ declare module 'vue-router' {
     icon?: string;
     auth?: ZeroOrOne;
     hide?: ZeroOrOne;
+    sort?: number;
   }
 }

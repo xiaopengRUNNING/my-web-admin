@@ -35,7 +35,11 @@ export function generateLocalRoutes(
 }
 
 export default function useMenuTree() {
-  const menuTree = generateLocalRoutes(appRoutes);
+  const menuTree = generateLocalRoutes(
+    appRoutes.sort((a, b) => {
+      return (a?.meta?.sort || 0) - (b?.meta?.sort || 0);
+    }),
+  );
 
   return { menuTree };
 }

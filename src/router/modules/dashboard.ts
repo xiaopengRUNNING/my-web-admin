@@ -5,7 +5,7 @@ const dashboard: RouteRecordRaw[] = [
     path: '/dashboard',
     name: 'Dashboard',
     redirect: '/dashboard/workplace',
-    meta: { title: '首页', icon: 'icon-dashboard', auth: 1, hide: 0 },
+    meta: { title: '首页', icon: 'icon-dashboard', auth: 1, hide: 0, sort: 1 },
     children: [
       {
         path: '/dashboard/workplace',

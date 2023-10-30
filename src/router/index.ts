@@ -14,16 +14,7 @@ const router = createRouter({
       meta: {
         // router other information
       },
-      children: [
-        {
-          path: '/home',
-          name: 'Home',
-          component: () => import('@/views/home/index.vue'),
-          meta: {},
-          children: [],
-        },
-        ...appRoutes,
-      ],
+      children: [...appRoutes],
     },
     ...constantsRouter,
     {
