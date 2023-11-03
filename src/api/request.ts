@@ -3,6 +3,12 @@ import axios, {
   AxiosError,
   InternalAxiosRequestConfig,
 } from 'axios';
+import { Modal } from '@arco-design/web-vue';
+import { ModalReturn } from '@arco-design/web-vue/es/modal/interface';
+import { useUserState } from '@/store';
+import { getToken } from '@/utils/token';
+
+let modalReturn: ModalReturn;
 
 const BASE_URL_PREFIX = import.meta.env.VITE_API_BASEURL;
 
@@ -17,7 +23,18 @@ const axiosInstance = axios.create({
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    return config;
+    const configOption: InternalAxiosRequestConfig = config;
+    const token = getToken();
+    if (token) {
+      configOption.headers.Authorization = token;
+    }
+    if (config.method === 'get') {
+      configOption.params = {
+        _t: Date.now(),
+        ...config.params,
+      };
+    }
+    return configOption;
   },
   (error: AxiosError) => {
     return Promise.reject(error);
@@ -27,13 +44,41 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.status === 201) {
+    if (response.status === 201 || response.status === 200) {
       return response.data;
     }
     return response;
   },
   (error: AxiosError) => {
-    return Promise.reject(error);
+    switch (error.response?.status) {
+      case 401:
+        if (!modalReturn) {
+          modalReturn = Modal.error({
+            title: '禁止访问',
+            content: '用户未登录或登录状态已过期!',
+            okText: '返回登录',
+            alignCenter: false,
+            modalStyle: {
+              textAlign: 'center',
+              padding: '20px 24px',
+              borderRadius: '12px',
+            },
+            escToClose: false,
+            maskClosable: false,
+            hideCancel: true,
+            onOk: () => {
+              const userState = useUserState();
+              userState.userLogout().then(() => {
+                window.location.reload();
+              });
+            },
+          });
+        }
+        break;
+      default:
+        console.log('default');
+        break;
+    }
   },
 );
 
@@ -50,7 +95,7 @@ export default {
     return axiosInstance.put(url, data);
   },
 
-  delete<T = any>(url: string, data?: object): Promise<T> {
+  del<T = any>(url: string, data?: object): Promise<T> {
     return axiosInstance.delete(url, data);
   },
 

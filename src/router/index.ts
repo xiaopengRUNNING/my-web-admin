@@ -10,7 +10,7 @@ const router = createRouter({
       path: '/',
       name: 'root',
       component: () => import('@/components/layout/GlobalLayout.vue'),
-      redirect: 'home',
+      redirect: 'login',
       meta: {
         // router other information
       },

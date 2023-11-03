@@ -30,7 +30,7 @@ const onSignIn = () => {
   userStore
     .userLogin(loginParam.value)
     .then(() => {
-      router.push('/home');
+      router.push('/dashboard');
       Message.success('欢迎回来！');
     })
     .finally(() => {

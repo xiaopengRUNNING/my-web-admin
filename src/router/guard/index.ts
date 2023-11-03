@@ -7,7 +7,7 @@ import setupPagePermissionGuard from './page-permissions';
 Nprogress.configure({ showSpinner: false });
 
 function setupPageGuard(router: Router) {
-  router.beforeEach(async (to) => {
+  router.beforeEach(async (to, from, next) => {
     document.title =
       (to.meta.title as string) || import.meta.env.VITE_APP_TITLE;
 
@@ -15,6 +15,27 @@ function setupPageGuard(router: Router) {
     if (!Nprogress.isStarted()) {
       Nprogress.start();
     }
+
+    if (from.query.redirect) {
+      const redirect = decodeURIComponent(from.query.redirect as string);
+      if (redirect === to.path) {
+        next();
+      } else {
+        next({ path: redirect, replace: true });
+      }
+    } else {
+      next();
+    }
+    // const redirect = decodeURIComponent(from.query.redirect as string);
+    // if (to.path === redirect) {
+    //   next({ ...to, replace: true });
+    // } else {
+    //   next({
+    //     path: redirect,
+    //     replace: true,
+    //   });
+    // }
+    // next();
   });
 
   router.afterEach(() => {

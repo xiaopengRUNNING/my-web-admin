@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import App from './App.vue';
 import '@arco-design/web-vue/es/message/style/css.js';
+import '@arco-design/web-vue/es/modal/style/css.js';
 import './assets/tailwind.css';
 import './assets/css/reset.less';
 

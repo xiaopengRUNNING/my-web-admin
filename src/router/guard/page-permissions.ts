@@ -5,7 +5,7 @@ export default function setupPagePermissionGuard(router: Router) {
   router.beforeEach((to, from, next) => {
     if (isLogin()) {
       if (to.name === 'Login') {
-        next({ name: from.name || 'Home' });
+        next({ name: from.name || 'Dashboard' });
         return;
       }
       next();
