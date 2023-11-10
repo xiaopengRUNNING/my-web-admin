@@ -23,6 +23,7 @@ export default defineConfig({
       '/api': {
         // 这里配置真实的后端环境地址
         target: 'http://localhost:3001',
+        ws: true,
         changeOrigin: true,
         rewrite: (path) => path.replace('/api/', '/'),
       },

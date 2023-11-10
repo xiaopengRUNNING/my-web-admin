@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Message } from '@arco-design/web-vue';
-import TableFilter from '@/components/tableFilter/index.vue';
 import { userList } from '@/api/modules/user.ts';
 import { filterObj } from '@/utils/tools.ts';
 import { Pagination } from '@/types/global.ts';
@@ -37,6 +36,7 @@ const getList = (pageNo) => {
   }
   const params = getQueryParams();
 
+  loading.value = true;
   userList(params)
     .then(({ success, message, result }) => {
       if (success) {
