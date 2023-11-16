@@ -79,6 +79,7 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
       vue: 'vue/dist/vue.esm-bundler.js',
     },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'], // 配置导入以数组中元素结尾的文件可以不写后缀名
   },
   css: {
     preprocessorOptions: {

@@ -28,6 +28,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
     'vue/multi-word-component-names': 0,
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     // 处理 prettier 和 eslint 冲突的规则
     'prettier/prettier': [
       'error',

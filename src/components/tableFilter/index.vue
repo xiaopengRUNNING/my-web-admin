@@ -8,7 +8,7 @@ const slots = useSlots();
 const slotsName = computed(() => Object.keys(toRaw(slots)));
 const collapsed = ref(false);
 
-const responsiveMap = {
+const responsiveMap: Record<string, string> = {
   xs: '(max-width: 575px)',
   sm: '(min-width: 576px)',
   md: '(min-width: 768px)',
@@ -16,7 +16,7 @@ const responsiveMap = {
   xl: '(min-width: 1200px)',
   xxl: '(min-width: 1600px)',
 };
-const screens = reactive({
+const screens = reactive<Record<string, boolean>>({
   xs: true,
   sm: true,
   md: true,
@@ -25,10 +25,17 @@ const screens = reactive({
   xxl: true,
 });
 const colArr = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
-const col = { xs: 1, sm: 1, md: 1, lg: 2, xl: 3, xxl: 4 };
+const col: Record<string, number> = {
+  xs: 1,
+  sm: 1,
+  md: 1,
+  lg: 2,
+  xl: 3,
+  xxl: 4,
+};
 
 const resultCol = computed(() => {
-  let res;
+  let res = 1;
   for (let i = 0; i < colArr.length; i += 1) {
     const breakpoint = colArr[i];
     if (screens[breakpoint] || breakpoint === 'xs') {
@@ -45,15 +52,22 @@ const resultRow = computed(() => {
   return Math.ceil(slotsName.value.length / resultCol.value);
 });
 
-const matchHandlers = {};
+interface MatchHandler {
+  mql: MediaQueryList;
+  listener: (_args: { matches: boolean }) => void;
+}
+const matchHandlers: Record<string, MatchHandler> = {};
 onMounted(() => {
   Object.keys(responsiveMap).forEach((screen) => {
     const matchMediaQuery = responsiveMap[screen];
+
     if (!matchMediaQuery) return;
-    const listener = ({ matches }) => {
+    const listener = ({ matches }: { matches: boolean }) => {
       screens[screen] = matches;
     };
+
     const mql = window.matchMedia(matchMediaQuery);
+
     if (mql.addEventListener) {
       mql.addEventListener('change', listener);
     } else {

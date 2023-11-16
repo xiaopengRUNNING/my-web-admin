@@ -11,7 +11,7 @@ const useAppState = defineStore('app', {
     updateSettings(partial: Partial<AppState>) {
       this.$patch(partial);
     },
-    toggleTheme(dark: string) {
+    toggleTheme(dark: boolean) {
       if (dark) {
         this.theme = 'dark';
         document.body.setAttribute('arco-theme', 'dark');

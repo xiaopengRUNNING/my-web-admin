@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Message } from '@arco-design/web-vue';
-import { userList } from '@/api/modules/user.ts';
-import { filterObj } from '@/utils/tools.ts';
-import { Pagination } from '@/types/global.ts';
+import { userList } from '@/api/modules/user';
+import { filterObj } from '@/utils/tools';
+import { Pagination } from '@/types/global';
 
 interface QueryUser {
   name: string;
@@ -15,6 +15,7 @@ const form = reactive<QueryUser>({ ...filterFields });
 const pagination = reactive<Pagination>({
   current: 1,
   pageSize: 10,
+  total: 0,
   showPageSize: true,
   showJumper: true,
   hideOnSinglePage: false,
@@ -30,7 +31,7 @@ const getQueryParams = () => {
   };
   return filterObj(param);
 };
-const getList = (pageNo) => {
+const getList = (pageNo?: number) => {
   if (pageNo) {
     pagination.current = pageNo;
   }
@@ -57,14 +58,14 @@ const onResetQuery = () => {
   Object.assign(form, { ...filterFields });
   getList(1);
 };
-const onPageNoChange = (pageNo) => {
+const onPageNoChange = (pageNo: number) => {
   pagination.current = pageNo;
   getList();
 };
-const onPageSizeChange = (pageSize) => {
+const onPageSizeChange = (pageSize: number) => {
   pagination.pageSize = pageSize;
   for (let index = pagination.current; index >= 1; index -= 1) {
-    if ((index - 1) * pagination.pageSize < pagination.total) {
+    if ((index - 1) * pagination.pageSize < (pagination.total || 0)) {
       pagination.current = index;
       break;
     }

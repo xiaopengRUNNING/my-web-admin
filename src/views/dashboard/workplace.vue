@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { socket } from './socket.ts';
+import { socket } from './socket';
 
 onBeforeMount(() => {
   socket.connect();

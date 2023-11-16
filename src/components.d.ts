@@ -11,7 +11,6 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AAvatar: typeof import('@arco-design/web-vue')['Avatar']
     AButton: typeof import('@arco-design/web-vue')['Button']
-    ACard: typeof import('@arco-design/web-vue')['Card']
     ACol: typeof import('@arco-design/web-vue')['Col']
     AConfigProvider: typeof import('@arco-design/web-vue')['ConfigProvider']
     ADivider: typeof import('@arco-design/web-vue')['Divider']
@@ -29,7 +28,6 @@ declare module '@vue/runtime-core' {
     ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider']
     AMenu: typeof import('@arco-design/web-vue')['Menu']
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem']
-    AResult: typeof import('@arco-design/web-vue')['Result']
     ARow: typeof import('@arco-design/web-vue')['Row']
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
     ATable: typeof import('@arco-design/web-vue')['Table']
@@ -38,7 +36,6 @@ declare module '@vue/runtime-core' {
     GlobalFooter: typeof import('./components/layout/GlobalFooter.vue')['default']
     GlobalHeader: typeof import('./components/layout/GlobalHeader.vue')['default']
     GlobalLayout: typeof import('./components/layout/GlobalLayout.vue')['default']
-    IconDashboard: typeof import('@arco-design/web-vue/es/icon')['IconDashboard']
     IconExport: typeof import('@arco-design/web-vue/es/icon')['IconExport']
     IconFullscreen: typeof import('@arco-design/web-vue/es/icon')['IconFullscreen']
     IconFullscreenExit: typeof import('@arco-design/web-vue/es/icon')['IconFullscreenExit']
