@@ -56,6 +56,7 @@ interface MatchHandler {
   mql: MediaQueryList;
   listener: (_args: { matches: boolean }) => void;
 }
+
 const matchHandlers: Record<string, MatchHandler> = {};
 onMounted(() => {
   Object.keys(responsiveMap).forEach((screen) => {
@@ -124,14 +125,14 @@ onUnmounted(() => {
                 <a-button
                   type="primary"
                   style="margin-right: 12px"
-                  @click="onSearchQuery"
+                  @click="onSearchQuery()"
                 >
                   <template #icon>
                     <icon-search />
                   </template>
                   查询
                 </a-button>
-                <a-button @click="onResetQuery">
+                <a-button @click="onResetQuery()">
                   <template #icon>
                     <icon-refresh />
                   </template>
@@ -164,14 +165,14 @@ onUnmounted(() => {
             :style="{
               marginBottom: resultRow > 1 ? '20px' : '0px',
             }"
-            @click="onSearchQuery"
+            @click="onSearchQuery()"
           >
             <template #icon>
               <icon-search />
             </template>
             查询
           </a-button>
-          <a-button @click="onResetQuery">
+          <a-button @click="onResetQuery()">
             <template #icon>
               <icon-refresh />
             </template>

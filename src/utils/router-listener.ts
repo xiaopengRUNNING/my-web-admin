@@ -17,8 +17,7 @@ export function setRouteEmitter(to: RouteLocationNormalized) {
 }
 
 export function listenerRouteChange(
-  // eslint-disable-next-line no-unused-vars
-  handler: (route: RouteLocationNormalized) => void,
+  handler: (_route: RouteLocationNormalized) => void,
   immediate = true,
 ) {
   emitter.on(key, handler as Handler);
