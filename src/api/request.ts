@@ -3,10 +3,11 @@ import axios, {
   AxiosError,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { Modal } from '@arco-design/web-vue';
+import { Modal, Message } from '@arco-design/web-vue';
 import { ModalReturn } from '@arco-design/web-vue/es/modal/interface';
 import { useUserState } from '@/store';
 import { getToken } from '@/utils/token';
+import { ResponseErrorData } from '@/types/global';
 
 let modalReturn: ModalReturn;
 
@@ -49,7 +50,7 @@ axiosInstance.interceptors.response.use(
     }
     return response;
   },
-  (error: AxiosError) => {
+  (error: AxiosError<ResponseErrorData>) => {
     switch (error.response?.status) {
       case 401:
         if (!modalReturn) {
@@ -74,6 +75,9 @@ axiosInstance.interceptors.response.use(
             },
           });
         }
+        break;
+      case 500:
+        Message.error(error.response.data?.message);
         break;
       default:
         console.log('default');

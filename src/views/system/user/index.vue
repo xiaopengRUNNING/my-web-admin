@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { userList } from '@/api/modules/user';
 import usePageTable from '@/hooks/usePageTable';
+import UserForm from './components/userForm.vue';
+
+type UserFormCtx = InstanceType<typeof UserForm>;
 
 const filterFieldsRef = ref({ name: '' });
+const formRef = ref<null | UserFormCtx>(null);
 
 const {
   loading,
@@ -12,10 +16,15 @@ const {
   onResetQuery,
   onPageNoChange,
   onPageSizeChange,
+  getList,
 } = usePageTable({
   filterFieldsRef,
   listAction: userList,
 });
+
+const onAdd = () => {
+  formRef.value?.onShow();
+};
 </script>
 
 <template>
@@ -32,6 +41,14 @@ const {
       </template>
     </TableFilter>
     <a-divider style="margin-top: 0px" />
+    <div class="page-table-operator">
+      <a-button @click="onAdd">
+        <template #icon>
+          <icon-plus />
+        </template>
+        新增
+      </a-button>
+    </div>
     <a-table
       row-key="_id"
       :bordered="false"
@@ -57,6 +74,8 @@ const {
       </template>
     </a-table>
   </div>
+
+  <UserForm ref="formRef" @submit="getList"></UserForm>
 </template>
 
 <style scoped lang="less">

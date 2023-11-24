@@ -10,3 +10,10 @@ export interface Pagination {
   showTotal?: boolean;
   size?: 'mini' | 'small' | 'medium' | 'large';
 }
+
+export interface ResponseErrorData {
+  message: string;
+  statusCode: number;
+  timestamp: string;
+  url: string;
+}
